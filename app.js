@@ -1,14 +1,23 @@
 const express = require('express')
-const path = require('path')
 
 const app = express()
+
+app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 
 const PORT = 3001
 
-app.get('/', (req, rep) => {
-  rep.sendFile(path.resolve(__dirname, 'temp/index.html'))
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
+app.get('/about', (req, res) => {
+  res.render('about')
+})
+
+app.get('/add_post', (req, res) => {
+  res.render('add_post')
 })
 
 app.listen(PORT, () => {
